@@ -1,0 +1,1 @@
+# babel-plugin-mickey-model-loader
