@@ -28,4 +28,11 @@ Then you can load your models as:
  - `loaderOptions` Options for `app.loader()` and these options are same as `[require.context(directory, useSubdirectories, regExp)](https://webpack.github.io/docs/context.html#require-context)` 
     - `directory` The directory to match within. Default: `'./models'`
     - `useSubdirectories` A boolean flag to include or exclude subdirectories. Default: `true`
-    - `regExp` A regular expression to match files against. Default: `/^\.\//`,
+    - `regExp` A regular expression to match files against. Default: `/^\.\//`
+
+
+## Contributing
+
+Pull requests and stars are highly welcome.
+
+For bugs and feature requests, please [create an issue](https://github.com/mickey/babel-plugin-mickey-model-loader/issues/new).
