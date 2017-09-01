@@ -23,7 +23,7 @@ Add the following section in your `.babelrc`:
 }
 ```
 
-Then you can load your models:
+Load your models:
 
 ```
 import React from 'react';
@@ -39,6 +39,9 @@ app.render(<Routers />, document.getElementById('root'));
 ```
 
 ## app.load(pattern)
+
+With this plugin, a handily method `load(pattern)` will be injected to `app`. This method will try to load models match with `pattern` from `loaderOptions.directory` specified directory(e.g. `./models`). And `pattern` is a glob expression hand by [minimatch](https://www.npmjs.com/package/minimatch).
+
 
 ## Options
 
