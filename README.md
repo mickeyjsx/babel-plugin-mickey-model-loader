@@ -19,11 +19,26 @@ Add the following section in your `.babelrc`:
 
 ```
 {
-  "plugins": ["mickey-model-loader"]
+  "plugins": ["mickey-model-loader", { loaderOptions: { directory: './models' } }]
 }
 ```
 
-Then you can load your models as:
+Then you can load your models:
+
+```
+import React from 'react';
+import createApp from 'mickey';
+import Routers from './router';
+
+const app = createApp({
+  historyMode: 'hash',
+});
+
+app.load(); // default load all models in './models'
+app.render(<Routers />, document.getElementById('root'));
+```
+
+## app.load(pattern)
 
 ## Options
 
