@@ -40,7 +40,7 @@ app.render(<Routers />, document.getElementById('root'));
 
 ## app.load(pattern)
 
-With this plugin, a handily method `load(pattern)` will be injected to `app`. This method will try to load models match with `pattern` from `loaderOptions.directory` specified directory(e.g. `./models`). And `pattern` is a glob expression hand by [minimatch](https://www.npmjs.com/package/minimatch).
+With this plugin, a handily method `load(pattern)` will be injected to `app`. This method will try into load models match with `pattern` from `loaderOptions.directory` specified directory(e.g. `./models`). And `pattern` is a glob expression hand by [minimatch](https://www.npmjs.com/package/minimatch).
 
 
 ## Options
