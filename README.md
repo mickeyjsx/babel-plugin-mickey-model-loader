@@ -23,19 +23,19 @@ Add the following section in your `.babelrc`:
 }
 ```
 
-Load your models:
+Load models:
 
 ```
 import React from 'react';
 import createApp from 'mickey';
-import Routers from './router';
+import SomeComponent from './SomeComponent';
 
 const app = createApp({
   historyMode: 'hash',
 });
 
-app.load(); // default load all models in './models'
-app.render(<Routers />, document.getElementById('root'));
+app.load(); // default load all models from './models'
+app.render(<SomeComponent />, document.getElementById('root'));
 ```
 
 ## app.load(pattern)
@@ -46,10 +46,9 @@ This method will try to load models matched with `pattern` from `loaderOptions.d
 
 Falsely `pattern` will load all models.
 
-
 ## Options
 
- - `disableHmr` Disable any Hmr. Default: `false`
+ - `disableHmr` Disable any HMR. Default: `false`
  - `disableModelHmr` Disable model HMR. Default: `false`
  - `quiet` Don't output any log. Default: `false`
  - `loaderOptions` Options for `app.loader()` and these options are same as [`require.context(directory, useSubdirectories, regExp)`](https://webpack.github.io/docs/context.html#require-context)
@@ -57,6 +56,7 @@ Falsely `pattern` will load all models.
     - `useSubdirectories` A boolean flag to include or exclude subdirectories. Default: `true`
     - `regExp` A regular expression to match files against. Default: `/^\.\//`
 
+Note: If `process.env.NODE_ENV` is `'production'`, will disable any HMR and do not output any log. This is useful for release building.
 
 ## Contributing
 
