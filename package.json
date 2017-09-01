@@ -1,0 +1,64 @@
+{
+  "name": "babel-plugin-mickey-model-loader",
+  "version": "0.0.2",
+  "description": "Inject a model loader function into mickey with hmr support.",
+  "main": "./lib/index.js",
+  "keywords": [
+    "mickey",
+    "babel",
+    "babel-plugin",
+    "hmr"
+  ],
+  "author": {
+    "name": "bubkoo",
+    "email": "bubkoo.wy@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mickeyjsx/babel-plugin-mickey-model-loader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mickeyjsx/babel-plugin-mickey-model-loader/issues"
+  },
+  "homepage": "https://github.com/mickeyjsx/babel-plugin-mickey-model-loader#readme",
+  "peerDependencies": {
+    "redbox-react": "^1.5.0"
+  },
+  "dependencies": {
+    "babel-generator": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "chalk": "^2.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-istanbul": "^4.1.4",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^4.5.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.3.0",
+    "husky": "^0.14.3",
+    "rimraf": "^2.6.1"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --ext .js,.jsx src",
+    "build": "rimraf lib && babel src --out-dir lib",
+    "prebuild": "npm run lint",
+    "prepublish": "npm run build",
+    "precommit": "npm run lint"
+  }
+}
