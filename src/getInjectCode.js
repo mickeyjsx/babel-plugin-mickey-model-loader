@@ -145,7 +145,7 @@ export function getLoaderCode({
 
   const injectorLogCode = quiet || isProduction
     ? ''
-    : `console.log('[${PLUGIN_NAME}] Loader injected. Call \`${app}.load(path)\` load model from "${directory}".')`
+    : `console.log('[${PLUGIN_NAME}] Loader injected. Call \`${app}.load(pattern)\` load model from "${directory}".')`
 
   const modelLogCode = quiet || isProduction
     ? ''
