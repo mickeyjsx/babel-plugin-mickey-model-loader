@@ -104,9 +104,10 @@ export default function (babel) {
 
           if (injectLoaderFn) {
             injectLoaderFn()
-            if (!noLog) {
+            if (!noLog && !isProduction) {
               console.log()
               console.log(`[${PLUGIN_NAME}] Loader injected. Call \`${app}.load(pattern)\` load model from "${loaderOpts.directory}".`)
+              tipPrinted = true
             }
           }
 
@@ -126,14 +127,15 @@ export default function (babel) {
               if (!noLog) {
                 console.log(`[${PLUGIN_NAME}] Parsed component paths: ${paths.map(item => item.path).join(' ,')}`)
                 console.log()
+                tipPrinted = true
               }
             } else if (!noLog) {
               console.log(chalk.yellow(`[${PLUGIN_NAME}] Can not parse any component path in "${filename}"`))
               console.log()
+              tipPrinted = true
             }
           }
 
-          tipPrinted = true
           injectedFile = filename
           cache[filename] = true
         }
