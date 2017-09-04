@@ -12,6 +12,8 @@ export default function (babel) {
   const utils = getUtils(babel)
   const cache = {}
   const modelPaths = {}
+
+  let tipPrinted = false
   let injectedFile = null
   let injectLoaderFn = null
 
@@ -36,6 +38,8 @@ export default function (babel) {
           ...defaultOptions,
           ...opts,
         }
+
+        const noLog = quiet && tipPrinted
 
         const loaderOpts = {
           ...defaultOptions.loaderOptions,
@@ -67,7 +71,7 @@ export default function (babel) {
               app,
               babel,
               loaderOpts,
-              quiet,
+              noLog,
               isProduction,
               disableHmr,
               disableModelHmr,
@@ -100,7 +104,7 @@ export default function (babel) {
 
           if (injectLoaderFn) {
             injectLoaderFn()
-            if (!quiet) {
+            if (!noLog) {
               console.log()
               console.log(`[${PLUGIN_NAME}] Loader injected. Call \`${app}.load(pattern)\` load model from "${loaderOpts.directory}".`)
             }
@@ -119,16 +123,17 @@ export default function (babel) {
                 disableModelHmr,
               }))
 
-              if (!quiet) {
+              if (!noLog) {
                 console.log(`[${PLUGIN_NAME}] Parsed component paths: ${paths.map(item => item.path).join(' ,')}`)
                 console.log()
               }
-            } else if (!quiet) {
+            } else if (!noLog) {
               console.log(chalk.yellow(`[${PLUGIN_NAME}] Can not parse any component path in "${filename}"`))
               console.log()
             }
           }
 
+          tipPrinted = true
           injectedFile = filename
           cache[filename] = true
         }
