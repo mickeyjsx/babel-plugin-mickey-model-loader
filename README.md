@@ -5,6 +5,7 @@
 [![MIT License](https://img.shields.io/badge/license-MIT_License-green.svg?style=flat-square)](https://github.com/mickey/babel-plugin-mickey-model-loader/blob/master/LICENSE)
 
 [![NPM Version](https://img.shields.io/npm/v/babel-plugin-mickey-model-loader.svg?style=flat-square)](https://www.npmjs.com/package/babel-plugin-mickey-model-loader)
+[![Build Status](https://img.shields.io/travis/mickeyjsx/babel-plugin-mickey-model-loader.svg?style=flat)](https://travis-ci.org/mickeyjsx/babel-plugin-mickey-model-loader)
 [![Dependencies](https://david-dm.org/mickey/babel-plugin-mickey-model-loader/status.svg)](https://david-dm.org/mickey/babel-plugin-mickey-model-loader)
 
 ## Install
@@ -57,6 +58,7 @@ Falsely `pattern` will load all models.
     - `regExp` A regular expression to match files against. Default: `/^\.\//`
 
 Note: If `process.env.NODE_ENV` is `'production'`, will disable any HMR and do not output any log. This is useful for release building.
+
 
 ## Contributing
 
