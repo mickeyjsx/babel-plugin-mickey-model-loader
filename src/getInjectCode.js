@@ -149,7 +149,7 @@ export function getLoaderCode({
 
   const modelLogCode = quiet || isProduction
     ? ''
-    : `console.log('[${PLUGIN_NAME}] Model "' + path + '" updated.')`
+    : `console.log('[${PLUGIN_NAME}] "${directory}/' + fixedPath + '" updated.')`
 
   const hmrCode = isProduction || disableHmr || disableModelHmr ? '' : `
     if (module.hot) {
@@ -164,6 +164,11 @@ export function getLoaderCode({
               const path = item[0]
               const raw = item[1]
               const model = utils.asign({}, raw, { namespace: utils.getNamespaceFromPath(path) })
+
+              let fixedPath = path
+              if(path[0] === '.'){
+                fixedPath = path.split('/').slice(1).join('/')
+              }
 
               modelMap[path] = raw
               injectModel(model)
