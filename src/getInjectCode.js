@@ -6,7 +6,7 @@ function transformCode({ transform }, code, returnCode) {
     code: true,
     babelrc: false,
     presets: [
-      'es2015',
+      'env',
       'react',
       'stage-0',
     ],
