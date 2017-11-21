@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-mickey-model-loader",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Inject a model loader function into mickey with hmr support.",
   "main": "./lib/index.js",
   "keywords": [
