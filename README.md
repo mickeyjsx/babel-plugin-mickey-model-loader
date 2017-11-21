@@ -43,7 +43,7 @@ app.render(<SomeComponent />, document.getElementById('root'));
 
 With this plugin, a handily method `load(pattern)` will be injected into `app`. 
 
-This method will try to load models matched with `pattern` from `loaderOptions.directory` specified directory (e.g. `./models`). The `pattern` is a glob expression hand by [minimatch](https://www.npmjs.com/package/minimatch). 
+This method will try to load models matched with `pattern` from `loaderOptions.directory` specified directory (e.g. `./models`). The `pattern` is a glob pattern matched by [minimatch](https://www.npmjs.com/package/minimatch). 
 
 Falsely `pattern` will load all models.
 
