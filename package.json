@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-mickey-model-loader",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Inject a model loader function into mickey with hmr support.",
   "main": "./lib/index.js",
   "keywords": [
@@ -25,14 +25,18 @@
   "peerDependencies": {
     "redbox-react": "^1.5.0"
   },
+  "dependencies": {
+    "@babel/core": "^7.0.0-beta.46",
+    "@babel/generator": "^7.0.0-beta.46",
+    "@babel/preset-env": "^7.0.0-beta.46",
+    "chalk": "^2.3.0"
+  },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
+    "@babel/cli": "^7.0.0-beta.46",
+    "@babel/core": "^7.0.0-beta.46",
+    "@babel/preset-env": "^7.0.0-beta.46",
     "babel-eslint": "^7.2.3",
     "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-istanbul": "^4.1.4",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-stage-0": "^6.24.1",
     "eslint": "^4.5.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
@@ -42,8 +46,7 @@
     "rimraf": "^2.6.1"
   },
   "files": [
-    "lib",
-    "src"
+    "lib"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -52,9 +55,5 @@
     "prebuild": "npm run lint",
     "prepublish": "npm run build",
     "precommit": "npm run lint"
-  },
-  "dependencies": {
-    "babel-generator": "^6.26.0",
-    "chalk": "^2.3.0"
   }
 }

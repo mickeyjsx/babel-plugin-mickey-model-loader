@@ -1,4 +1,4 @@
-import generate from 'babel-generator'
+import generate from '@babel/generator'
 
 export default function getUtils(babel) {
   const { types: t } = babel

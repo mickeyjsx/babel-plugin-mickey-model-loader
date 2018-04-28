@@ -1,16 +1,14 @@
-import generate from 'babel-generator'
+import generate from '@babel/generator'
 import { PLUGIN_NAME } from './consts'
 
 function transformCode({ transform }, code, returnCode) {
   const ret = transform(code, {
+    ast: true,
     code: true,
     babelrc: false,
     presets: [
-      'env',
-      'react',
-      'stage-0',
+      '@babel/preset-env',
     ],
-    plugins: [],
   })
 
   const tc = ret.code
