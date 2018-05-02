@@ -44,7 +44,8 @@ function getComponentHmrCode(babel, app, paths, args) {
 
   const renderFnCode = `
     let render = () => {
-      ${transformCode(babel, imports + renderFn, true)}
+      ${transformCode(babel, imports, true)}
+      ${transformCode(babel, renderFn, true)}
     }
   `
 
@@ -85,7 +86,9 @@ function getModelHmrCode(app, modelPaths) {
     if (module.hot) {
       module.hot.accept('${path}', () => {
         try {
-          injectMode(require('${path}'))
+          const raw = require('${path}');
+          const model = raw.default || raw;
+          injectMode()
         } catch(e) {
           console.error(e) // eslint-disable-line
         }
