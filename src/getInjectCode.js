@@ -53,7 +53,7 @@ function getComponentHmrCode(babel, app, paths, args) {
     if (module.hot) {
       const renderNormally = render
       const renderException = (error) => {
-        const RedBox = require('redbox-react')
+        const RedBox = require('redbox-react').default
         const ReactDOM = require('react-dom')
         ReactDOM.render(React.createElement(RedBox, { error: error }), ${container})
       }
@@ -81,14 +81,17 @@ function getComponentHmrCode(babel, app, paths, args) {
 }
 
 function getModelHmrCode(app, modelPaths) {
-  const vars = `const injectMode = ${app}.mode`
+  const vars = `
+    const injectMode = ${app}.mode
+    const utils = require('mickey/lib/utils')
+  `
   const code = modelPaths.map(path => `
     if (module.hot) {
       module.hot.accept('${path}', () => {
         try {
-          const raw = require('${path}');
-          const model = raw.default || raw;
-          injectMode()
+          const raw = require('${path}').default;
+          const model = utils.asign({}, raw, { namespace: utils.getNamespaceFromPath(path) })
+          injectMode(model)
         } catch(e) {
           console.error(e) // eslint-disable-line
         }
@@ -138,7 +141,7 @@ export function getLoaderCode({
       const fileList = pattern ? utils.minimatch.match(files, pattern) : files;
 
       fileList.forEach(path => {
-        const raw = context(path).default || context(path)
+        const raw = context(path).default;
         const model = utils.asign({}, raw, { namespace: utils.getNamespaceFromPath(path) })
         modelMap[path] = raw
         injectModel(model)
@@ -161,7 +164,7 @@ export function getLoaderCode({
           const hmrContext = require.context('${directory}', ${useSubdirectories}, ${regExp})
           hmrContext.keys()
             .filter(path => modelMap[path])
-            .map(path => [path, hmrContext(path).default || hmrContext(path)])
+            .map(path => [path, hmrContext(path).default])
             .filter(item => modelMap[item[0]] !== item[1])
             .forEach(item => {
               const path = item[0]
