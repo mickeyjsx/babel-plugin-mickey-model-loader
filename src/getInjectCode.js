@@ -8,6 +8,7 @@ function transformCode({ transform }, code, returnCode) {
     babelrc: false,
     presets: [
       '@babel/preset-env',
+      '@babel/preset-react',
     ],
   })
 
@@ -24,6 +25,7 @@ function transformCode({ transform }, code, returnCode) {
 }
 
 function getRenderArgs(babel, args) {
+  // app.render(<Router />, document.getElementById('root'), callback)
   return args.map((arg) => {
     const { code } = generate(arg)
     return transformCode(babel, code, true)
