@@ -135,7 +135,7 @@ export function getLoaderCode({
       const fileList = pattern ? utils.minimatch.match(files, pattern) : files;
 
       fileList.forEach(path => {
-        const raw = context(path)
+        const raw = context(path).default || context(path)
         const model = utils.asign({}, raw, { namespace: utils.getNamespaceFromPath(path) })
         modelMap[path] = raw
         injectModel(model)
@@ -158,7 +158,7 @@ export function getLoaderCode({
           const hmrContext = require.context('${directory}', ${useSubdirectories}, ${regExp})
           hmrContext.keys()
             .filter(path => modelMap[path])
-            .map(path => [path, hmrContext(path)])
+            .map(path => [path, hmrContext(path).default || hmrContext(path)])
             .filter(item => modelMap[item[0]] !== item[1])
             .forEach(item => {
               const path = item[0]
