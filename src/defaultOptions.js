@@ -5,6 +5,6 @@ export default {
   loaderOptions: {
     directory: './models',
     useSubdirectories: true,
-    regExp: /^\.\//,
+    regExp: /\.js$/,
   },
 }
