@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable brace-style */
 
-import chalk from 'chalk'
+// import chalk from 'chalk'
 import getUtils from './getUtils'
 import { PLUGIN_NAME } from './consts'
 import defaultOptions from './defaultOptions'
@@ -130,8 +130,9 @@ export default function (babel) {
                 tipPrinted = true
               }
             } else if (!noLog) {
-              console.log(chalk.yellow(`[${PLUGIN_NAME}] Can not parse any component path in "${filename}"`))
-              console.log()
+              // eslint-disable-next-line
+              // console.log(chalk.yellow(`[${PLUGIN_NAME}] Can not parse any component path in "${filename}"`))
+              // console.log()
               tipPrinted = true
             }
           }

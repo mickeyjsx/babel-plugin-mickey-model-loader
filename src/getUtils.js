@@ -124,43 +124,47 @@ export default function getUtils(babel) {
 
   function getComponentPaths(component, scope, paths = []) {
     const { openingElement, children } = component
-    const { name: node } = openingElement
-    if (node && t.isJSXIdentifier(node) && node.name) {
-      const identifierName = node.name
-      if (scope.hasBinding(identifierName)) {
-        const binding = getBinding(scope, identifierName)
-        if (binding) {
-          let componentPath
-          const parent = binding.path.parent
-          // ast to code
-          const raw = generate(parent)
-          if (t.isImportDeclaration(parent)) {
-            componentPath = parent.source.value
-          } else if (t.isVariableDeclaration(parent)) {
-            const declarator = getDeclarator(parent.declarations, identifierName)
-            if (declarator && isRequire(declarator.init)) {
-              componentPath = declarator.init.arguments[0].value
+    if (openingElement) {
+      const { name: node } = openingElement
+
+      if (node && t.isJSXIdentifier(node) && node.name) {
+        const identifierName = node.name
+        if (scope.hasBinding(identifierName)) {
+          const binding = getBinding(scope, identifierName)
+          if (binding) {
+            let componentPath
+            const parent = binding.path.parent
+            // ast to code
+            const raw = generate(parent)
+            if (t.isImportDeclaration(parent)) {
+              componentPath = parent.source.value
+            } else if (t.isVariableDeclaration(parent)) {
+              const declarator = getDeclarator(parent.declarations, identifierName)
+              if (declarator && isRequire(declarator.init)) {
+                componentPath = declarator.init.arguments[0].value
+              }
             }
-          }
 
-          // collect relative path
-          if (componentPath && componentPath[0] === '.') {
-            paths.push({
-              code: raw.code,
-              name: identifierName,
-              path: componentPath,
-            })
+            // collect relative path
+            if (componentPath && componentPath[0] === '.') {
+              paths.push({
+                code: raw.code,
+                name: identifierName,
+                path: componentPath,
+              })
 
-            // remove import/require statement of the component
-            // binding.path.parentPath.remove()
+              // remove import/require statement of the component
+              // binding.path.parentPath.remove()
+            }
           }
         }
       }
+      children.forEach(child => (getComponentPaths(child, scope, paths)))
+
+      return paths
     }
 
-    children.forEach(child => (getComponentPaths(child, scope, paths)))
-
-    return paths
+    return []
   }
 
   return {
