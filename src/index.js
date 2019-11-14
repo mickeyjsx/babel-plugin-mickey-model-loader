@@ -26,8 +26,9 @@ export default function (babel) {
           injectLoaderFn = null
         },
       },
-      CallExpression(path, { opts }) {
-        const { filename } = path.hub.file.opts
+      CallExpression(path, state) {
+        const { opts } = state;
+        const { filename } = (path && path.hub && path.hub.file && path.hub.file.opts) || (state && state.file);
         if ((injectedFile && injectedFile !== filename) || cache[filename]) {
           return
         }
